@@ -20,5 +20,15 @@ func WriteRegistry(state map[string]*FileState, path string) {
 
   old := path + ".old"
   os.Rename(path, old)
+
+
+  if err != nil {
+    log.Printf("Warning, could not rename %s to %s: %s\n", path, old, err)
+  }
+
   os.Rename(tmp, path)
+  
+  if err != nil {
+    log.Printf("Warning, could not rename %s to %s: %s\n", path, old, err)
+  }
 }
